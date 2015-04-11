@@ -1,0 +1,31 @@
+<head>
+  <title>collectionfstest</title>
+</head>
+
+<body>
+  <h1>Welcome to Meteor!</h1>
+
+  {{> hello}}
+  {{> svgload}}
+</body>
+
+<template name="hello">
+  <button>Click Me</button>
+  <p>You've pressed the button {{counter}} times.</p>
+</template>
+
+<template name="svgload">
+{{#with svg}}
+  {{#unless this.isUploaded}}
+    {{> FS.UploadProgressBar bootstrap=true}}
+    <input class="btn btn-default btn-sm" type="button" id="cancelSVG" value="Cancel">
+  {{else}}
+  <!-- This line is evil -->
+  <img src="{{url}}" style="height:75px; border:2px solid #888;"/>
+  {{> FS.DeleteButton class="btn btn-danger btn-sm"}}
+  {{/unless}}
+{{else}}
+  <img src="/img/placeholder.png" style="height:75px; border:2px solid #ccc;"/>
+  <span class="btn btn-default btn-file btn-sm">Browse<input type="file" id="fileSVG"></span>
+{{/with}}
+</template>
