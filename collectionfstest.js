@@ -33,7 +33,6 @@ if (Meteor.isClient) {
         SVGs.insert(f,function(e,fileObj) {
           // nasty hack to for test
           Session.set('loadedSVG', fileObj._id);
-          fileObj.update({$set:{'metadata.organisation': template.data.organisation, 'metadata.scanned': false}});
         });
       }
     },
